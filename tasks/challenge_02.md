@@ -62,6 +62,8 @@ mkdir data
 ```
 
 - Copy the contents of the ch02_data folder to your challenge_02/data directory.
+<!-- this command is different from in chapter one -->
+<!-- change to cp -r .\requirements\ch02_data\ .\challenge_02\   for consistency? -->
 
 ```bash
 cp ../requirements/ch02_data/* data/
