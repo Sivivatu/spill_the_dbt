@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: office_weather
+    schema: main
+
+models:
+  - name: extract_weather_data
+    config:
+      alias: latest_weather_readings
+    data_tests:
+      - unique:
+          column_name: "time || '-' || office"
+
+seeds:
+  - name: office_locations
+    columns:
+      - name: lat
+        data_tests:
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: -90  # (Optional)
+            max_value: 90 # (Optional)
+            strictly: false # (Optional. Default is 'false'. Adds an 'or equal to' to the comparison operator for min/max)
+      - name: long
+        data_tests:
+        - dbt_expectations.expect_column_values_to_be_between:
+            min_value: -180  # (Optional)
+            max_value: 180 # (Optional)
+            strictly: false # (Optional. Default is 'false'. Adds an 'or equal to' to the comparison operator for min/max)
+  
